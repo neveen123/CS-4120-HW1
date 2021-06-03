@@ -32,11 +32,8 @@ def main():
     split = 0.67
     url = 'https://raw.githubusercontent.com/ruiwu1990/CSCI_4120/master/KNN/iris.data'
     trainingSet, testSet = loadDataset(url, 0.66)
-    print('Train set: ' + repr(len(trainingSet)))
-    print('Test set: ' + repr(len(testSet)))
     
     neigh = KNeighborsClassifier(n_neighbors=1)
-    neigh.fit(trainingSet, testSet)z
     
     #use predict method
     #print(neigh.predict())
