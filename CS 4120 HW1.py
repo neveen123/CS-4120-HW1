@@ -28,20 +28,39 @@ def loadDataset(filename, split):
 # Writing accuracy finder since we could not figure out how to convert the
 # labels to float.As of writing not finished (this sentence will be deleted
 # when finished)
-def findAccuracy(features_train, features_test, labels_train, labels_test):
+# 
+# How it should work:
+# When findAccuracy is called, the data will already be inside the sets.
+# Every row of feature_test would be compared to every of row of feature_train
+# If a row of feature_test matched a row in feature_train then the label
+# associated with that row in feature_train would be gotten and compared
+# to the prediction lable associated with the feature_test row.
+# If the predicated label was the exact same as the correct label then
+# a counter for how many labels were correctly guessed would incremeted
+# At the end, the accuracy would be found by doing the total correct/51
+def findAccuracy(features_train, features_test, labels_train, prediction):
     accNum = 0
-    for x in range(len(features_test)):
-        for y in range(len(features_train)):
-            if features_test[x] == features_train[y]:
-                correctLb = labels_train[y]
-                if labels_test[x] == correctLb:
-                    accNum+=1
-    accuracy = (accNum/51)*100
+    ftTestL = len(features_test) -1
+    ftTrainL = len(features_train) -1
+    for x in range(ftTestL):
+        for y in range(ftTrainL):
+            if features_test[x][0] == features_train[y][0]:
+                if features_test[x][1] == features_train[y][1]:
+                    if features_test[x][2] == features_train[y][2]:
+                        if features_test[x][3] == features_train[y][3]:
+                                correctLb = labels_train[y]
+                                if prediction[x] == correctLb:
+                                    accNum+=1
+    accuracy = accNum/51
     return accuracy
     
     
     
 def main():
+    #BIG NOTE: features_test = 99, features_train = 51. These values are
+    #reversed and should be swapped with each other. 
+    #Lazy fix: switched the names calling loadDataset
+    
     #should be 2d array with 150 rows and 4 columns representing features
     trainingSet=[]
     #should be 1d with 150 labels represented in a number format (Ex: 0 = setsona)
@@ -53,13 +72,12 @@ def main():
     #
     # features_test and lables_test represent the datasets that will be used
     # to test the machine
-    features_train, features_test, labels_train, labels_test = loadDataset(url, 0.66)
-    
+    features_test, features_train, labels_test, labels_train = loadDataset(url, 0.66)
     
     # Euclidean distance calculation is built into KNeighborsClassifier's
     # class parameters and is set to it by default so only n_neighbors needs
     # to be changed
-    neigh = KNeighborsClassifier(n_neighbors=2)
+    neigh = KNeighborsClassifier(n_neighbors=1)
     neigh.fit(features_train, labels_train)
     
     #print(features_test)
@@ -69,16 +87,19 @@ def main():
     # the row which is the neighbor. Ex: [[24]] means row 0's
     # neighbor is row 24
     #print(neigh.kneighbors(features_test, return_distance = False))
+    neigh.kneighbors(features_test, return_distance = False)
     
-    #use predict method
+    # use predict method
     prediction = neigh.predict(features_test)
     #print(features_test)
     #print(prediction)
     
     
-    #score method used for accuracy
-    #error produced with findAccuracy, The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
-    accuracy = findAccuracy(features_train, features_test, labels_train, labels_test)
+    # score method used for accuracy
+    # currently, does not work properly as it repeats calculated accuracy numbers
+    # could be something to do with the neighbors not being known for features_test
+    accuracy = findAccuracy(features_train, features_test, labels_train, prediction)
     print(accuracy)
+   
 
 main()
