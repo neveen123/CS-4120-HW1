@@ -12,10 +12,6 @@ from sklearn import metrics
 def loadDataset(filename, split):
     trainingSet = []
     testSet = []
-    #features_train = []
-    #features_test = []
-    #lables_train = []
-    #labels_test = []
     df = pd.read_csv(filename, header=None)
     array = df.to_numpy()
     # : will get all rows, :-1 will get all columns except last column
@@ -32,10 +28,8 @@ def loadDataset(filename, split):
 
 
 def main():
-    #should be 2d array with 150 rows and 4 columns representing features
-    trainingSet=[]
-    #should be 1d with 150 labels represented in a number format (Ex: 0 = setsona)
-    testSet=[]
+    #accuracy list to hold each accuracy value after finding it
+    accuracyList = []
     url = 'https://raw.githubusercontent.com/ruiwu1990/CSCI_4120/master/KNN/iris.data'
     # features_train and features_lables represents the training dataset 
     # of features and their correct lables that will be used by the machine
@@ -45,14 +39,17 @@ def main():
     # to test the machine
     features_train, features_test, lables_train, labels_test = loadDataset(url, 0.66)
     
+    # placeholder while loop code which will be used to iterate
+    # from 1 to 20
+    # k = 0
+    # while k < 20:
     
-    # Euclidean distance calculation is built into KNeighborsClassifier's
+    # euclidean distance calculation is built into KNeighborsClassifier's
     # class parameters and is set to it by default so only n_neighbors needs
-    # to be changed
+    # to be changed. 
+    # for while loop change 2 to k
     neigh = KNeighborsClassifier(n_neighbors=2)
     neigh.fit(features_train, lables_train)
-    
-    #print(features_test)
     
     # using kneighbors mehthod to find neighbors
     # To read when printed, the values inside [] represent
@@ -67,5 +64,6 @@ def main():
     
     #score method used for accuracy
     #print(neigh.score(prediction, lables_train, sample_weight = None))
+    # k+=1
 
 main()
