@@ -58,12 +58,11 @@ def main():
         #print(neigh.kneighbors(features_test, return_distance = False))
         neigh.kneighbors(features_test, return_distance = False)
         
-        #use predict method
+        # use predict method
         prediction = neigh.predict(features_test)
         
-        #score method used for accuracy
-        #accuracy = findAccuracy(features_train, features_test, labels_train, prediction)
-        #print(accuracy)
+        # score method used for accuracy
+        # works but may not be correct parameters to use
         s = neigh.score(features_test, labels_test, sample_weight = None)
         print(float(s))
         print(k)
