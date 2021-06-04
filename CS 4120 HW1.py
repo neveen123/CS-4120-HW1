@@ -74,6 +74,12 @@ def main():
     # to test the machine
     features_test, features_train, labels_test, labels_train = loadDataset(url, 0.66)
     
+    # for loop to iterate from 1 to 20 (commented out as rest of code
+    # is not fully finished. The loop will encompass everything below).
+    # range_of_k = range(1, 20)
+    # for k in range_of_k:
+    
+    
     # Euclidean distance calculation is built into KNeighborsClassifier's
     # class parameters and is set to it by default so only n_neighbors needs
     # to be changed
