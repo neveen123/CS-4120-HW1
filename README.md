@@ -9,3 +9,9 @@ and are placed on top of almost every piece code. This
 was done so that reading code makes sense and you can see
 what we were trying to do.
 #
+#
+# Quick Start
+Run code as python script in a python ide
+#
+#
+# Figure
