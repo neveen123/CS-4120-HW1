@@ -15,3 +15,5 @@ Run code as python script in a python ide
 #
 #
 # Figure
+![cs4120_hw1_plot](https://user-images.githubusercontent.com/84241955/120840977-e96ce380-c538-11eb-974a-7d4597df5716.png)
+#
