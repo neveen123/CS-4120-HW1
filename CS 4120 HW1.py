@@ -68,11 +68,4 @@ def main():
         accuracy.append(s)
         print(k)
         
-    fig = plt.figure()
-    
-    plt.plot(range_of_k, accuracy, '--')
-    
-    print(fig)
-    plt.show()
-
 main()
