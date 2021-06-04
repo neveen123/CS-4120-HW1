@@ -42,6 +42,7 @@ def main():
     
     # for loop to iterate from 1 to 20 (commented out as rest of code
     # is not fully finished. The loop will encompass everything below).
+    accuracy = []
     range_of_k = range(1, 21)
     for k in range_of_k:
         
@@ -64,7 +65,7 @@ def main():
         # score method used for accuracy
         # works but may not be correct parameters to use
         s = neigh.score(features_test, labels_test, sample_weight = None)
-        print(float(s))
+        accuracy.append(s)
         print(k)
         
     fig = plt.figure()
