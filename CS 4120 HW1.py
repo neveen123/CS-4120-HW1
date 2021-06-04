@@ -46,21 +46,26 @@ def main():
     features_train, features_test, lables_train, labels_test = loadDataset(url, 0.66)
     
     
-    
-    neigh = KNeighborsClassifier(n_neighbors=1)
+    # Euclidean distance calculation is built into KNeighborsClassifier's
+    # class parameters and is set to it by default so only n_neighbors needs
+    # to be changed
+    neigh = KNeighborsClassifier(n_neighbors=2)
     neigh.fit(features_train, lables_train)
     
-    print(features_test)
+    #print(features_test)
+    
+    # using kneighbors mehthod to find neighbors
+    # To read when printed, the values inside [] represent
+    # the row which is the neighbor. Ex: [[24]] means row 0's
+    # neighbor is row 24
+    print(neigh.kneighbors(features_test, return_distance = False))
     
     #use predict method
     prediction = neigh.predict(features_test)
-    
+    print(features_test)
     print(prediction)
     
-    #using kneighbors mehthod to find neighbors
-    #print(neigh.kneighbors(testSet, return_distance = False))
-    
     #score method used for accuracy
-    #score(testSet, trainingSet, sample_weight = None)
+    #print(neigh.score(prediction, lables_train, sample_weight = None))
 
 main()
