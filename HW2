@@ -1,0 +1,34 @@
+import numpy as np
+import pandas as pd
+
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+from yellowbrick.cluster import KElbowVisualizer
+from sklearn.metrics import plot_confusion_matrix
+
+
+X, y_true = make_blobs(n_samples=300, centers=4,
+                       cluster_std=0.60, random_state=0)
+plt.scatter(X[:, 0], X[:, 1], s = 30, color = 'y')
+
+plt.xlabel('X') #labeling the x axis
+plt.ylabel('Y') #labeling the y axis
+
+plt.show() #displays the graph
+plt.clf()
+
+cost = []
+for i in range(1,10):
+    KM = KMeans(n_clusters = i, max_iter = 500)
+    KM.fit(X)
+    
+#claculates the squared error for the clustered points
+cost.append(KM.inertia_)
+
+
+#plot the cost against the K values
+plt.plot(range(1,10), cost, color = 'g', linewidth = '3')
+plt.xlabel("value of K")
+plt.ylabel('cost')
+plt.show() #clear the plot
