@@ -12,17 +12,31 @@ what we were trying to do.
 #
 # Quick Start
 Run code as python script in a python ide
+
+Make sure to have yellowbrick, seaborn, and scikit packages
+
+Also make sure to have python version 3:
+sudo apt-get install python3-tk
+
+For yellobrick:
+pip3 install yellowbrick
+conda install yellowbrick (if using anaconda environment)
+
+For seaborn:
+pip install seaborn
+conda install seaborn (if using anaconda environment)
+
+For scikit:
+pip install -U scikit-learn
+pip3 install -U scikit-learn (if using linux)
+conda install -c conda-forge scikit-learn (if using anaconad environment) 
 #
 #
 # Figure
-![cs4120_hw1_plot](https://user-images.githubusercontent.com/84241955/120840977-e96ce380-c538-11eb-974a-7d4597df5716.png)
+![cs4120hw2Elbow](https://user-images.githubusercontent.com/84241955/121460038-48d45480-c97a-11eb-9c7c-445727f3ae65.png)
 #
-# Which K Performed Best
-We can't say which specific k performed the best
-based on the plot we have. Some performed well while others
-didn't. There were also a lot of repeat values which is probably
-due to us using inaccurate parameters for the score function from the 
-KNeighborsClassifier. (Side Note: Running the program each times gives
-different plot charts and accuracy values due built-in shuffle of
-KNeighborsClassifier)
+# Which K Works Best
+Based on using the elbow method to find the best K out of a range
+of K values from 2 to 10, it found 4 to be the best K.
 #
+
